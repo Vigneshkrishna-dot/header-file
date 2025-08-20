@@ -1,0 +1,57 @@
+# Header File
+
+This repository contains a simple C program demonstrating the usage of standard C header files: `<stdio.h>` and `<time.h>`. The program prints the current system time and measures the CPU time consumed by a dummy loop.
+
+## Program
+
+```c
+#include <stdio.h>
+#include <time.h>
+
+int main() {
+    time_t t;
+    time(&t);  // Get current time
+    printf("Current Time: %s", ctime(&t));
+
+    clock_t start = clock();  // Start CPU clock
+    for (int i = 0; i < 1000000; i++); // Dummy loop
+    clock_t end = clock();
+    printf("CPU Time used: %f seconds\n", (double)(end - start) / CLOCKS_PER_SEC);
+    return 0;
+}
+```
+
+## Explanation
+
+- `time()`  
+  Returns the current system time as a `time_t` object.
+
+- `ctime()`  
+  Converts a `time_t` value to a readable string format representing the local time.
+
+- `clock()`  
+  Measures the amount of CPU time consumed since the start of the program. Useful for benchmarking code execution time.
+
+## Output Example
+
+```
+Current Time: Wed Aug 20 17:31:34 2025
+CPU Time used: 0.020000 seconds
+```
+
+## How to Compile and Run
+
+1. Save the program to a file, for example, `header_example.c`.
+2. Open a terminal and navigate to the file location.
+3. Compile the program using GCC:
+   ```
+   gcc header_example.c -o header_example
+   ```
+4. Run the executable:
+   ```
+   ./header_example
+   ```
+
+## License
+
+This program is provided for educational purposes.
